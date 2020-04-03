@@ -1,0 +1,13 @@
+body {
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: 'Helvetica Neue', sans-sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 5vh 3vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
