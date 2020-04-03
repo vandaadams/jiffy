@@ -11,3 +11,39 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.top,
+.middle,
+.indicators {
+  text-align: center;
+  position: relative;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  text-align: center;
+  color: white;
+}
+
+.search-input {
+  font-size: 72px;
+}
+
+.search-input::placeholder {
+	color: #323232;
+}
+
+.search-clear,
+.spinner {
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  /* disables interaction while elements are not visible  */
+  pointer-events: none;
+}
+
+.search-clear {
+  cursor: pointer;
+}
