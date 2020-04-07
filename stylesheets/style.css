@@ -47,3 +47,22 @@ input {
 .search-clear {
   cursor: pointer;
 }
+
+.videos,
+.middle,
+.grid {
+  display: grid;
+  place-items: center;
+}
+
+.video {
+  grid-area: 1/1;
+  max-width: 500px;
+  display: block;
+}
+
+.search-input,
+.videos,
+.full-area {
+  grid-area: 1/1;
+}

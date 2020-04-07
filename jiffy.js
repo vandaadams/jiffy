@@ -4,6 +4,7 @@ function createVideo (src) {
   video.muted = true
   video.autoplay = true
   video.loop = true
+  video.className = 'video'
 
   console.log(video)
   return video
@@ -18,7 +19,7 @@ fetch(
     response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
   })
   .then(json => {
-    const gif = json.data[5]
+    const gif = json.data[1]
     const src = gif.images.original.mp4
     console.log(src)
 
