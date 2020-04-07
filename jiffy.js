@@ -27,9 +27,16 @@ fetch(
 
     // grabs video elements and adds newly created videos to it
     const videosEl = document.querySelector('.videos')
-    videosEl.appendChild(video)
+    // videosEl.appendChild(video)
 
   })
   .catch(error => {
 
+  })
+
+
+  const searchEl = document.querySelector('.search-input')
+
+  searchEl.addEventListener('keyup', () => {
+    console.log(searchEl.value)
   })

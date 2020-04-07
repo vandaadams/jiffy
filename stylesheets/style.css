@@ -48,8 +48,6 @@ input {
   cursor: pointer;
 }
 
-.videos,
-.middle,
 .grid {
   display: grid;
   place-items: center;
@@ -61,8 +59,6 @@ input {
   display: block;
 }
 
-.search-input,
-.videos,
 .full-area {
   grid-area: 1/1;
 }
