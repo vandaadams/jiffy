@@ -62,3 +62,12 @@ input {
 .full-area {
   grid-area: 1/1;
 }
+
+.search-hint {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.show-hint .search-hint {
+  opacity: 1;
+}

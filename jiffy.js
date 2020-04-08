@@ -35,9 +35,19 @@ fetch(
   })
 
   const searchEl = document.querySelector('.search-input')
+  const hintEl = document.querySelector('.search-hint')
 
   const doSearch = event => {
     const searchTerm = searchEl.value
+
+    if (searchTerm.length > 2) {
+      // sets the text to embed the variable as hint suggestion
+      hintEl.innerHTML = `Hit enter to search ${searchTerm}`
+      document.body.classList.add('show-hint')
+    } else {
+      document.body.classList.remove('show-hint')
+    }
+
     if (event.key === 'Enter' && searchTerm.length > 2) {
       console.log('search for', searchTerm)
     }
