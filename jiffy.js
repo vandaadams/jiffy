@@ -1,3 +1,5 @@
+const API_KEY = '6SKAmiNDQCidJGg2MJxxCRFgPHARNAnf'
+
 function createVideo (src) {
   const video = document.createElement('video')
   video.src = src
@@ -10,47 +12,52 @@ function createVideo (src) {
   return video
 }
 
-fetch(
-  'https://api.giphy.com/v1/gifs/search?api_key=6SKAmiNDQCidJGg2MJxxCRFgPHARNAnf&q=doggo&limit=50&offset=0&rating=PG-13&lang=en'
-)
-  .then(response => {
-    // converts response to json
-    return response.json()
-    response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
-  })
-  .then(json => {
-    const gif = json.data[1]
-    const src = gif.images.original.mp4
-    console.log(src)
+const searchGiphy = searchTerm => {
+  console.log('search for', searchTerm)
 
-    const video = createVideo(src)
+  fetch(
+    `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchTerm}&limit=50&offset=0&rating=PG-13&lang=en`
+  )
+    .then(response => {
+      // converts response to json
+      return response.json()
+      response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
+    })
+    .then(json => {
+      const gif = json.data[1]
+      const src = gif.images.original.mp4
+      console.log(src)
 
-    // grabs video elements and adds newly created videos to it
-    const videosEl = document.querySelector('.videos')
-    // videosEl.appendChild(video)
+      const video = createVideo(src)
 
-  })
-  .catch(error => {
+      // grabs video elements and adds newly created videos to it
+      const videosEl = document.querySelector('.videos')
+      videosEl.appendChild(video)
 
-  })
+    })
+    .catch(error => {
 
-  const searchEl = document.querySelector('.search-input')
-  const hintEl = document.querySelector('.search-hint')
+    })
+}
 
-  const doSearch = event => {
-    const searchTerm = searchEl.value
 
-    if (searchTerm.length > 2) {
-      // sets the text to embed the variable as hint suggestion
-      hintEl.innerHTML = `Hit enter to search ${searchTerm}`
-      document.body.classList.add('show-hint')
-    } else {
-      document.body.classList.remove('show-hint')
-    }
+const searchEl = document.querySelector('.search-input')
+const hintEl = document.querySelector('.search-hint')
 
-    if (event.key === 'Enter' && searchTerm.length > 2) {
-      console.log('search for', searchTerm)
-    }
+const doSearch = event => {
+  const searchTerm = searchEl.value
+
+  if (searchTerm.length > 2) {
+    // sets the text to embed the variable as hint suggestion
+    hintEl.innerHTML = `Hit enter to search ${searchTerm}`
+    document.body.classList.add('show-hint')
+  } else {
+    document.body.classList.remove('show-hint')
   }
 
-  searchEl.addEventListener('keyup', doSearch)
+  if (event.key === 'Enter' && searchTerm.length > 2) {
+    searchGiphy(searchTerm);
+  }
+}
+
+searchEl.addEventListener('keyup', doSearch)
