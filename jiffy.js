@@ -34,9 +34,13 @@ fetch(
 
   })
 
-
   const searchEl = document.querySelector('.search-input')
 
-  searchEl.addEventListener('keyup', () => {
-    console.log(searchEl.value)
-  })
+  const doSearch = event => {
+    const searchTerm = searchEl.value
+    if (event.key === 'Enter' && searchTerm.length > 2) {
+      console.log('search for', searchTerm)
+    }
+  }
+
+  searchEl.addEventListener('keyup', doSearch)
