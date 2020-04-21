@@ -1,5 +1,11 @@
 const API_KEY = '6SKAmiNDQCidJGg2MJxxCRFgPHARNAnf'
 
+// https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array
+const randomChoice = arr => {
+    const randIndex = Math.floor(Math.random() * arr.length);
+    return arr[randIndex];
+};
+
 function createVideo (src) {
   const video = document.createElement('video')
   video.src = src
@@ -24,7 +30,7 @@ const searchGiphy = searchTerm => {
       response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
     })
     .then(json => {
-      const gif = json.data[1]
+      const gif = randomChoice(json.data)
       const src = gif.images.original.mp4
       console.log(src)
 
