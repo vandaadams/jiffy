@@ -18,7 +18,23 @@ function createVideo (src) {
   return video
 }
 
+// adds loading spinner
+const toggleLoading = state => {
+  console.log('loading', state)
+  // toggles between on and off
+  if (state) {
+    // adds loading class
+    document.body.classList.add('loading')
+  } else {
+    // removes loading class
+    document.body.classList.remove('loading')
+  }
+}
+
+// changes loading hint to 'see more
+
 const searchGiphy = searchTerm => {
+  toggleLoading(true);
   console.log('search for', searchTerm)
 
   fetch(
@@ -40,12 +56,17 @@ const searchGiphy = searchTerm => {
       const videosEl = document.querySelector('.videos')
       videosEl.appendChild(video)
 
+      video.addEventListener('loadeddata', event => {
+        video.classList.add('visible')
+        toggleLoading(false)
+        document.body.classList.add('has-results')
+        hintEl.innerHTML = `Hit enter to search more ${searchTerm}`
+      })
     })
     .catch(error => {
 
     })
 }
-
 
 const searchEl = document.querySelector('.search-input')
 const hintEl = document.querySelector('.search-hint')
