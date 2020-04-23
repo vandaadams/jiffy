@@ -1,5 +1,10 @@
 const API_KEY = '6SKAmiNDQCidJGg2MJxxCRFgPHARNAnf'
 
+const videosEl = document.querySelector('.videos')
+const searchEl = document.querySelector('.search-input')
+const hintEl = document.querySelector('.search-hint')
+const clearEl = document.querySelector('.search-clear')
+
 // https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array
 const randomChoice = arr => {
     const randIndex = Math.floor(Math.random() * arr.length);
@@ -32,7 +37,6 @@ const toggleLoading = state => {
 }
 
 // changes loading hint to 'see more
-
 const searchGiphy = searchTerm => {
   toggleLoading(true);
   console.log('search for', searchTerm)
@@ -53,7 +57,7 @@ const searchGiphy = searchTerm => {
       const video = createVideo(src)
 
       // grabs video elements and adds newly created videos to it
-      const videosEl = document.querySelector('.videos')
+
       videosEl.appendChild(video)
 
       video.addEventListener('loadeddata', event => {
@@ -67,9 +71,6 @@ const searchGiphy = searchTerm => {
 
     })
 }
-
-const searchEl = document.querySelector('.search-input')
-const hintEl = document.querySelector('.search-hint')
 
 const doSearch = event => {
   const searchTerm = searchEl.value
@@ -87,4 +88,13 @@ const doSearch = event => {
   }
 }
 
+const clearSearch = event => {
+  document.body.classList.remove('has-results')
+  videosEl.innerHTML = ''
+  hintEl.innerHTML = ''
+  searchEl.value = ''
+  searchEl.focus()
+}
+
 searchEl.addEventListener('keyup', doSearch)
+clearEl.addEventListener('click', clearSearch)
