@@ -96,5 +96,11 @@ const clearSearch = event => {
   searchEl.focus()
 }
 
+document.addEventListener('keyup', event => {
+  if (event.key === 'Escape') {
+    clearSearch()
+  }
+})
+
 searchEl.addEventListener('keyup', doSearch)
 clearEl.addEventListener('click', clearSearch)
