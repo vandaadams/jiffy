@@ -11,7 +11,7 @@ const randomChoice = arr => {
     return arr[randIndex];
 };
 
-function createVideo (src) {
+const createVideo = src => {
   const video = document.createElement('video')
   video.src = src
   video.muted = true
@@ -30,9 +30,12 @@ const toggleLoading = state => {
   if (state) {
     // adds loading class
     document.body.classList.add('loading')
+    searchEl.disabled = true
   } else {
     // removes loading class
     document.body.classList.remove('loading')
+    searchEl.disabled = false
+    searchEl.focus()
   }
 }
 
