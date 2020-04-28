@@ -68,7 +68,9 @@ const searchGiphy = searchTerm => {
       })
     })
     .catch(error => {
-
+      toggleLoading(false)
+      // display error message for user
+      hintEl.innerHTML = `Nothing found for ${searchTerm}`
     })
 }
 
