@@ -1,5 +1,5 @@
 # Jiffy
 
-https://www.urbanrider.co.uk/footwear/boots.html
+https://vandaadams.github.io/jiffy/
 
 A simple web app that displayes GIFs using GIPHY's API. 
